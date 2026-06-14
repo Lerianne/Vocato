@@ -1,0 +1,34 @@
+# --- Your private career data — NEVER commit ---
+app/memory/
+app/db/
+app/.coach_history
+.coach_history
+*.coach_history
+
+# --- Internal strategy docs (remove these lines if the repo stays private) ---
+docs/PLAN.md
+docs/POSITIONING.md
+docs/BRAND-GUIDELINES.md
+docs/README.app.old.md
+
+# --- Python ---
+.venv/
+app/.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# --- Local tooling ---
+.claude/settings.local.json
+
+# --- macOS / editors ---
+.DS_Store
+.idea/
+.vscode/
+
+# --- Web (Next.js / Vercel) ---
+web/node_modules/
+web/.next/
+web/out/
+web/.vercel/
+web/.env*

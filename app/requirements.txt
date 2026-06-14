@@ -1,0 +1,9 @@
+ollama
+numpy
+pypdf
+python-docx
+pandas
+openpyxl
+ddgs
+prompt_toolkit
+rich
