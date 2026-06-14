@@ -92,7 +92,7 @@ def classify(path: Path, text: str) -> str:
     # This is the user's own application archive, so a document is theirs by default.
     # Exclude only clear third-party files (e.g. a relative's CV named "Nathan_*").
     # Legal/admin docs are filtered separately below so they never become résumés.
-    is_hers = "nathan" not in name and "nathan" not in head
+    is_users = "nathan" not in name and "nathan" not in head
 
     # Legal / administrative / non-career docs — never experience. Route to "other"
     # before anything else so generic words in them can't trip a wrong bucket.
@@ -112,11 +112,11 @@ def classify(path: Path, text: str) -> str:
                                "je vous écris", "je me permets de")):
         return "cover-letter"
 
-    # Her résumé. This archive has no saved job postings, so a career document that
-    # is hers and isn't a cover letter is a (often role-tailored) résumé. Accept it
+    # The user's résumé. With no saved job postings, a career document that
+    # is theirs and isn't a cover letter is a (often role-tailored) résumé. Accept it
     # on a structure cue OR a résumé-ish filename — text extraction sometimes drops
     # the name/header, so we must not require it.
-    if is_hers and (
+    if is_users and (
         ("resume" in name or "résumé" in name or "cv" in name)
         or any(w in head for w in ("professional summary", "work experience",
                                    "education", "skills", "experience",
@@ -133,7 +133,7 @@ def classify(path: Path, text: str) -> str:
                                "nous recherchons", "profil recherché", "vos missions")):
         return "job-description"
 
-    # Unknown / non-career → stay SAFE: never assume it's her experience.
+    # Unknown / non-career → stay SAFE: never assume it's their experience.
     return "other"
 
 

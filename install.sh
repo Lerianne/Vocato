@@ -95,17 +95,7 @@ EOF
 chmod +x "$BIN_DIR/vocato"
 ok "Installed the 'vocato' command to $BIN_DIR"
 
-# --- 8. generate the weekly check-in agent from the template ----------------
-TEMPLATE="$APP_DIR/examples/checkin.plist.template"
-AGENT_DIR="$HOME/Library/LaunchAgents"
-AGENT_PLIST="$AGENT_DIR/app.vocato.checkin.plist"
-if [ -f "$TEMPLATE" ]; then
-  mkdir -p "$AGENT_DIR"
-  sed "s#__VOCATO_APP_DIR__#$APP_DIR#g" "$TEMPLATE" > "$AGENT_PLIST"
-  ok "Weekly check-in scheduled for Fridays 4pm (disable: launchctl unload \"$AGENT_PLIST\")"
-fi
-
-# --- 9. done ----------------------------------------------------------------
+# --- 8. done ----------------------------------------------------------------
 printf "\n%s✓ Vocato is installed.%s\n\n" "$GRN$BOLD" "$RST"
 case ":$PATH:" in
   *":$BIN_DIR:"*)
@@ -115,4 +105,4 @@ case ":$PATH:" in
     printf "  echo 'export PATH=\"%s:\$PATH\"' >> ~/.zshrc && source ~/.zshrc\n" "$BIN_DIR"
     printf "Then start a session:\n  %svocato%s\n" "$BOLD" "$RST" ;;
 esac
-printf "%sFirst run creates memory/profile.md and memory/goals.md for you to fill in.%s\n\n" "$DIM" "$RST"
+printf "%sFirst run walks you through setup (name, pronouns, weekly reminder) and\ncreates memory/profile.md and memory/goals.md for you to fill in.%s\n\n" "$DIM" "$RST"

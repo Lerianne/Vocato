@@ -30,9 +30,22 @@ Python environment, and adds a `vocato` command. Then just run:
 vocato
 ```
 
-First run auto-creates `memory/profile.md` and `memory/goals.md` from the
-templates in `app/examples/` for you to fill in. Re-run the installer any time
-to update to the latest version.
+The first run walks you through a quick **setup** — your name, pronouns, and
+whether to schedule a weekly check-in (and on which day/time). The coach uses
+your name and pronouns in every session. It also auto-creates
+`memory/profile.md` and `memory/goals.md` for you to fill in.
+
+Re-run setup any time:
+
+```bash
+vocato --setup
+```
+
+Re-run the installer any time to update to the latest version.
+
+> Your name and pronouns are saved to `app/memory/identity.json`, which is
+> **git-ignored** and injected into the prompt at runtime — they never land in a
+> tracked file.
 
 ### Manual install (if you'd rather do it by hand)
 

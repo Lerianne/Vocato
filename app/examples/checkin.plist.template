@@ -6,23 +6,18 @@
   <string>app.vocato.checkin</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/usr/bin/osascript</string>
-    <string>-e</string>
-    <string>display notification "Time for your weekly Vocato check-in." with title "Vocato" sound name "Glass"</string>
-    <string>-e</string>
-    <string>tell application "Terminal"
-      activate
-      do script "cd '__VOCATO_APP_DIR__' &amp;&amp; ./coach --checkin"
-    end tell</string>
+    <string>/bin/sh</string>
+    <string>-c</string>
+    <string>/usr/bin/osascript -e 'display notification "Time for your weekly Vocato check-in." with title "Vocato" sound name "Glass"'; /usr/bin/open "__VOCATO_APP_DIR__/checkin.command"</string>
   </array>
   <key>StartCalendarInterval</key>
   <dict>
     <key>Weekday</key>
-    <integer>5</integer>
+    <integer>__WEEKDAY__</integer>
     <key>Hour</key>
-    <integer>16</integer>
+    <integer>__HOUR__</integer>
     <key>Minute</key>
-    <integer>0</integer>
+    <integer>__MINUTE__</integer>
   </dict>
 </dict>
 </plist>

@@ -43,7 +43,7 @@ def main():
         excerpts = "\n\n".join(f"({h['name']})\n{h['text'][:900]}" for h in hits[:8])
         sections.append(f"## {doc_type} excerpts\n{excerpts}")
 
-    # Filename list is itself a signal: which roles/companies she targeted.
+    # Filename list is itself a signal: which roles/companies they targeted.
     names_by_type = {}
     for (t, name) in docs:
         names_by_type.setdefault(t, []).append(name)
@@ -59,10 +59,10 @@ def main():
     prompt = f"""You are analyzing a job seeker's document archive to build a career profile.
 
 CRITICAL distinction between source types — do not blur them:
-- VERIFIED EXPERIENCE (below) = the authoritative, human-confirmed record of what she has ACTUALLY DONE. This is ground truth — section 1 must come from here, copied faithfully, NOT re-inferred or embellished.
+- VERIFIED EXPERIENCE (below) = the authoritative, human-confirmed record of what they have ACTUALLY DONE. This is ground truth — section 1 must come from here, copied faithfully, NOT re-inferred or embellished.
 - RÉSUMÉ excerpts = tailored supporting detail. Titles/dates vary between versions; if they disagree with VERIFIED EXPERIENCE, the verified record wins.
-- COVER-LETTER excerpts = jobs she APPLIED FOR. Proof she applied, NOT that she worked there. Present-tense enthusiasm in a cover letter is intent, not history.
-- JOB-DESCRIPTION excerpts = roles she was INTERESTED IN — targets, not jobs held.
+- COVER-LETTER excerpts = jobs they APPLIED FOR. Proof they applied, NOT that they worked there. Present-tense enthusiasm in a cover letter is intent, not history.
+- JOB-DESCRIPTION excerpts = roles they were INTERESTED IN — targets, not jobs held.
 
 ## VERIFIED EXPERIENCE (authoritative — use verbatim for section 1)
 {experience or "(none provided — fall back to résumé excerpts, and be conservative)"}
@@ -74,10 +74,10 @@ CRITICAL distinction between source types — do not blur them:
 {chr(10).join(sections)}
 
 Write a markdown digest titled "Career history (auto-synthesized {date.today().isoformat()})" with these EXACT sections:
-1. **What she has actually done** — taken from VERIFIED EXPERIENCE above (roles, projects, education, skills). Do NOT add a company here from a cover letter, and do NOT alter her job titles. If VERIFIED EXPERIENCE is empty, use only résumé content and stay conservative.
-2. **What she has applied for / targeted** — companies and role types drawn from cover letters and job postings, clearly framed as applications/targets she pursued (and may not have landed). Exclude anything already in section 1.
-3. **Recurring strengths & narrative** — themes her materials consistently emphasize.
-4. **Observations & possible tensions** — e.g., gap between what she's done vs. what she applies for, breadth vs. focus, evolution over time.
+1. **What they have actually done** — taken from VERIFIED EXPERIENCE above (roles, projects, education, skills). Do NOT add a company here from a cover letter, and do NOT alter their job titles. If VERIFIED EXPERIENCE is empty, use only résumé content and stay conservative.
+2. **What they have applied for / targeted** — companies and role types drawn from cover letters and job postings, clearly framed as applications/targets they pursued (and may not have landed). Exclude anything already in section 1.
+3. **Recurring strengths & narrative** — themes their materials consistently emphasize.
+4. **Observations & possible tensions** — e.g., gap between what they've done vs. what they apply for, breadth vs. focus, evolution over time.
 
 If unsure whether a company is real experience or just an application, put it under section 2, not 1. Be factual; cite document names. Max 700 words."""
 
