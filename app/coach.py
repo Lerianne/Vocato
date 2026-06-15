@@ -421,7 +421,7 @@ def main():
     messages = [{"role": "system", "content": system}]
     n_chunks = len(store.chunks)
     console.print(Panel(
-        "[bold]Career Coach[/bold]   [dim]local · free · private · "
+        "[bold]Vocato[/bold]   [dim]local · free · private · "
         f"{n_chunks} document chunks indexed[/dim]\n"
         "[dim]Enter sends · Option/Alt+Enter = new line · "
         "/help for commands · /bye to end[/dim]",
