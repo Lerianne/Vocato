@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 #
 # Vocato installer — the private, local career coach.
-#   curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/vocato/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/Lerianne/Vocato/main/install.sh | bash
 #
 # Idempotent: re-run any time to update to the latest version.
 set -euo pipefail
 
 # --- config (override via env vars) -----------------------------------------
-REPO_URL="${VOCATO_REPO:-https://github.com/YOUR_GITHUB_USERNAME/vocato.git}"
+REPO_URL="${VOCATO_REPO:-https://github.com/Lerianne/Vocato.git}"
 INSTALL_DIR="${VOCATO_HOME:-$HOME/.vocato}"
 BIN_DIR="${VOCATO_BIN:-$HOME/.local/bin}"
 CHAT_MODEL="llama3.2:3b"
@@ -23,11 +23,6 @@ die()  { printf "%s✗ %s%s\n" "$RED" "$*" "$RST" >&2; exit 1; }
 
 printf "\n%s🎯 Vocato%s — answer the calling.\n%sA private career coach that runs entirely on your Mac.%s\n\n" \
   "$BOLD" "$RST" "$DIM" "$RST"
-
-# --- 0. guard against the unedited placeholder ------------------------------
-case "$REPO_URL" in
-  *YOUR_GITHUB_USERNAME*) die "Edit install.sh: set REPO_URL to your GitHub repo (or export VOCATO_REPO).";;
-esac
 
 # --- 1. preflight -----------------------------------------------------------
 [ "$(uname)" = "Darwin" ] || die "This installer targets macOS. (Linux: install Ollama + Python yourself, then clone the repo.)"

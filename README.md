@@ -20,7 +20,7 @@ Powered by [Ollama](https://ollama.com) (`llama3.2:3b` + `nomic-embed-text`) wit
 ## Quick start (one line)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<you>/vocato/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Lerianne/Vocato/main/install.sh | bash
 ```
 
 This installs Ollama, pulls the models (~2 GB, first time only), sets up the
@@ -50,8 +50,8 @@ Re-run the installer any time to update to the latest version.
 ### Manual install (if you'd rather do it by hand)
 
 ```bash
-git clone https://github.com/<you>/vocato.git
-cd vocato/app
+git clone https://github.com/Lerianne/Vocato.git
+cd Vocato/app
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ollama pull llama3.2:3b && ollama pull nomic-embed-text
 ./coach
